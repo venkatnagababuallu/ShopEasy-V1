@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Products</h2>
+
+<div class="products">
+
+    {% for product in products %}
+
+    <div class="card">
+
+        <img src="{{ product.image }}"
+             alt="{{ product.name }}">
+
+        <h3>{{ product.name }}</h3>
+
+        <p>₹ {{ product.price }}</p>
+
+        <a href="/product/{{ product.id }}">
+            View Product
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

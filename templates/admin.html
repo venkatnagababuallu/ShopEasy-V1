@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<a href="/admin/add">
+    <button>Add Product</button>
+</a>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>₹ {{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+
+        <td>
+            <a href="/admin/edit/{{ product.id }}">
+                Edit
+            </a>
+
+            |
+
+            <a href="/admin/delete/{{ product.id }}"
+               onclick="return confirm('Delete this product?')">
+                Delete
+            </a>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
