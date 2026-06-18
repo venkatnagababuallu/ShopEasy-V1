@@ -2,48 +2,116 @@
 
 {% block content %}
 
-<h2>Edit Product</h2>
+<div class="form-page">
 
-<form method="POST">
+    <div class="product-form-card">
 
-    <input type="text"
-           name="name"
-           value="{{ product.name }}"
-           required>
+        <h1>
+            ✏️ Edit Product
+        </h1>
 
-    <br><br>
+        <p class="form-subtitle">
+            Update product information
+        </p>
 
-    <input type="text"
-           name="description"
-           value="{{ product.description }}"
-           required>
+        <form method="POST">
 
-    <br><br>
+            <div class="form-group">
 
-    <input type="number"
-           name="price"
-           value="{{ product.price }}"
-           required>
+                <label>
+                    Product Name
+                </label>
 
-    <br><br>
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ product.name }}"
+                    required
+                >
 
-    <input type="number"
-           name="stock"
-           value="{{ product.stock }}"
-           required>
+            </div>
 
-    <br><br>
+            <div class="form-group">
 
-    <input type="text"
-           name="image"
-           value="{{ product.image }}">
+                <label>
+                    Description
+                </label>
 
-    <br><br>
+                <textarea
+                    name="description"
+                    rows="4"
+                    required
+                >{{ product.description }}</textarea>
 
-    <button type="submit">
-        Update Product
-    </button>
+            </div>
 
-</form>
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Price (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        value="{{ product.price }}"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        name="stock"
+                        value="{{ product.stock }}"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    type="text"
+                    name="image"
+                    value="{{ product.image }}"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn save-btn">
+
+                💾 Update Product
+
+            </button>
+
+            <a href="/admin"
+               class="btn secondary-btn">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

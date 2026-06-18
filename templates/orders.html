@@ -2,37 +2,72 @@
 
 {% block content %}
 
-<h2>Order History</h2>
+<h1 class="section-title">
+    📦 Order History
+</h1>
 
 {% if orders %}
 
-<table>
-
-    <tr>
-        <th>Order ID</th>
-        <th>Total Amount</th>
-        <th>Date</th>
-    </tr>
+<div class="orders-container">
 
     {% for order in orders %}
 
-    <tr>
+    <div class="order-card">
 
-        <td>{{ order.id }}</td>
+        <div class="order-header">
 
-        <td>₹ {{ order.total_amount }}</td>
+            <h2>
+                Order #{{ order.id }}
+            </h2>
 
-        <td>{{ order.order_date }}</td>
+            <span class="status delivered">
+                Delivered
+            </span>
 
-    </tr>
+        </div>
+
+        <hr>
+
+        <div class="order-details">
+
+            <p>
+                <strong>Total Amount:</strong>
+                <span class="price">
+                    ₹ {{ order.total_amount }}
+                </span>
+            </p>
+
+            <p>
+                <strong>Order Date:</strong>
+                {{ order.order_date }}
+            </p>
+
+        </div>
+
+    </div>
 
     {% endfor %}
 
-</table>
+</div>
 
 {% else %}
 
-<p>No orders found.</p>
+<div class="empty-orders">
+
+    <h2>
+        📦 No Orders Yet
+    </h2>
+
+    <p>
+        Looks like you haven't placed any orders.
+    </p>
+
+    <a href="/"
+       class="btn">
+        Start Shopping
+    </a>
+
+</div>
 
 {% endif %}
 

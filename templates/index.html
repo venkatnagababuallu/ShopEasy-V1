@@ -2,7 +2,23 @@
 
 {% block content %}
 
-<h2>Products</h2>
+<!-- Hero Section -->
+<div class="hero">
+
+    <h1>🛒 Welcome to ShopEasy</h1>
+
+    <p>
+        Discover the latest gadgets and electronics
+        at unbeatable prices.
+    </p>
+
+</div>
+
+<!-- Products Section -->
+
+<h2 class="section-title">
+    Featured Products
+</h2>
 
 <div class="products">
 
@@ -13,13 +29,38 @@
         <img src="{{ product.image }}"
              alt="{{ product.name }}">
 
-        <h3>{{ product.name }}</h3>
+        <div class="card-body">
 
-        <p>₹ {{ product.price }}</p>
+            <h3>{{ product.name }}</h3>
 
-        <a href="/product/{{ product.id }}">
-            View Product
-        </a>
+            <p class="description">
+                {{ product.description }}
+            </p>
+
+            <p class="price">
+                ₹ {{ product.price }}
+            </p>
+
+            {% if product.stock > 0 %}
+
+                <p class="stock available">
+                    ✅ In Stock ({{ product.stock }})
+                </p>
+
+            {% else %}
+
+                <p class="stock unavailable">
+                    ❌ Out of Stock
+                </p>
+
+            {% endif %}
+
+            <a href="/product/{{ product.id }}"
+               class="btn">
+                View Product
+            </a>
+
+        </div>
 
     </div>
 

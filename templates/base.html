@@ -1,37 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<html>
 
-    <title>ShopEasy E-Commerce</title>
+<head>
+
+    <title>ShopEasy</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
 
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+          href="{{ url_for(
+              'static',
+              filename='style.css'
+          ) }}">
+
 </head>
+
 <body>
 
-    <header>
-        <h1>🛒 ShopEasy E-Commerce</h1>
+<header>
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="/cart">Cart</a>
-            <a href="/orders">Orders</a>
-            <a href="/admin">Admin</a>
-        </nav>
-    </header>
+    <div class="logo">
 
-    <div class="container">
-        {% block content %}
-        {% endblock %}
+        <a href="/"
+           style="
+           text-decoration:none;
+           color:inherit;">
+
+            🛒 ShopEasy
+
+        </a>
+
     </div>
 
-    <footer class="footer">
-        <p>ShopEasy © 2026 | Powered by Flask</p>
-        <p>Version: v1.0.0</p>
-    </footer>
+    {% if session.get("user_id") %}
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/cart">
+            🛒 Cart
+            (
+            {{ session.get(
+                'cart',
+                {}
+            ).values() | sum }}
+            )
+        </a>
+
+        <a href="/orders">
+            📦 Orders
+        </a>
+
+        {% if session.get("role") == "admin" %}
+
+            <a href="/admin">
+                ⚙️ Admin
+            </a>
+
+        {% endif %}
+
+        <form action="/"
+              method="GET"
+              class="search-form">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search products...">
+
+            <button type="submit">
+                🔍
+            </button>
+
+        </form>
+
+        <span class="welcome">
+
+            👋 {{ session["username"] }}
+
+        </span>
+
+        <a href="/logout">
+
+            Logout
+
+        </a>
+
+    </nav>
+
+    {% endif %}
+
+</header>
+
+
+<!-- Flash Messages -->
+
+{% with messages =
+    get_flashed_messages(
+        with_categories=true
+    ) %}
+
+    {% if messages %}
+
+        {% for category,
+               message
+               in messages %}
+
+            <div
+                class="flash
+                {{ category }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
+
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+
+<footer>
+
+    © 2026 ShopEasy
+
+    |
+
+    Built with Flask,
+    Docker &
+    Kubernetes 🚀
+
+</footer>
 
 </body>
+
 </html>

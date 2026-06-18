@@ -2,43 +2,94 @@
 
 {% block content %}
 
-<h2>Your Cart</h2>
+<h1 class="section-title">
+    🛒 Shopping Cart
+</h1>
 
 {% if items %}
 
-<table>
+<div class="cart-container">
 
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-    </tr>
+    <div class="cart-items">
 
-    {% for product, quantity, subtotal in items %}
+        {% for product, quantity, subtotal in items %}
 
-    <tr>
+        <div class="cart-card">
 
-        <td>{{ product.name }}</td>
+            <img src="{{ product.image }}"
+                 alt="{{ product.name }}">
 
-        <td>{{ quantity }}</td>
+            <div class="cart-info">
 
-        <td>₹ {{ subtotal }}</td>
+                <h3>{{ product.name }}</h3>
 
-    </tr>
+                <p class="description">
+                    {{ product.description }}
+                </p>
 
-    {% endfor %}
+                <p>
+                    Quantity:
+                    <strong>{{ quantity }}</strong>
+                </p>
 
-</table>
+                <p class="price">
+                    ₹ {{ subtotal }}
+                </p>
 
-<h3>Total: ₹ {{ total }}</h3>
+            </div>
 
-<a href="/checkout">
-    Checkout
-</a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="cart-summary">
+
+        <h2>Order Summary</h2>
+
+        <hr>
+
+        <p>
+            Total Amount
+        </p>
+
+        <h1 class="price">
+            ₹ {{ total }}
+        </h1>
+
+        <a href="/checkout"
+           class="btn checkout-btn">
+            Proceed to Checkout
+        </a>
+
+        <a href="/"
+           class="btn secondary-btn">
+            Continue Shopping
+        </a>
+
+    </div>
+
+</div>
 
 {% else %}
 
-<p>Your cart is empty.</p>
+<div class="empty-cart">
+
+    <h2>
+        🛒 Your cart is empty
+    </h2>
+
+    <p>
+        Start shopping and add amazing products!
+    </p>
+
+    <a href="/"
+       class="btn">
+        Browse Products
+    </a>
+
+</div>
 
 {% endif %}
 

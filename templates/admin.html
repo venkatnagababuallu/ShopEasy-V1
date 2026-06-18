@@ -2,46 +2,108 @@
 
 {% block content %}
 
-<h2>Admin Dashboard</h2>
+<h1 class="section-title">
+    ⚙️ Admin Dashboard
+</h1>
 
-<a href="/admin/add">
-    <button>Add Product</button>
-</a>
+<div class="admin-header">
 
-<table>
+    <a href="/admin/add"
+       class="btn add-btn">
+        ➕ Add Product
+    </a>
 
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Actions</th>
-    </tr>
+</div>
 
-    {% for product in products %}
+<div class="admin-table-container">
 
-    <tr>
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>₹ {{ product.price }}</td>
-        <td>{{ product.stock }}</td>
+<table class="admin-table">
 
-        <td>
-            <a href="/admin/edit/{{ product.id }}">
-                Edit
-            </a>
+    <thead>
 
-            |
+        <tr>
 
-            <a href="/admin/delete/{{ product.id }}"
-               onclick="return confirm('Delete this product?')">
-                Delete
-            </a>
-        </td>
-    </tr>
+            <th>ID</th>
 
-    {% endfor %}
+            <th>Image</th>
+
+            <th>Name</th>
+
+            <th>Price</th>
+
+            <th>Stock</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for product in products %}
+
+        <tr>
+
+            <td>{{ product.id }}</td>
+
+            <td>
+
+                <img
+                    src="{{ product.image }}"
+                    class="admin-image"
+                    alt="{{ product.name }}"
+                >
+
+            </td>
+
+            <td>{{ product.name }}</td>
+
+            <td class="price">
+                ₹ {{ product.price }}
+            </td>
+
+            <td>
+
+                {% if product.stock > 0 %}
+
+                    <span class="badge available">
+                        {{ product.stock }}
+                    </span>
+
+                {% else %}
+
+                    <span class="badge unavailable">
+                        Out
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/admin/edit/{{ product.id }}"
+                   class="btn edit-btn">
+                    ✏️ Edit
+                </a>
+
+                <a href="/admin/delete/{{ product.id }}"
+                   class="btn delete-btn"
+                   onclick="return confirm('Delete this product?')">
+                    🗑 Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
 
 </table>
+
+</div>
 
 {% endblock %}

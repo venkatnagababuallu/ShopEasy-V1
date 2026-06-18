@@ -2,25 +2,54 @@
 
 {% block content %}
 
-<div class="product">
+<div class="product-page">
 
-    <img src="{{ product.image }}"
-         alt="{{ product.name }}">
+    <div class="product-image">
 
-    <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}"
+             alt="{{ product.name }}">
 
-    <p>{{ product.description }}</p>
+    </div>
 
-    <h3>₹ {{ product.price }}</h3>
+    <div class="product-details">
 
-    <p>
-        Stock Available:
-        {{ product.stock }}
-    </p>
+        <h1>{{ product.name }}</h1>
 
-    <a href="/add-to-cart/{{ product.id }}">
-        Add to Cart
-    </a>
+        <p class="product-description">
+            {{ product.description }}
+        </p>
+
+        <h2 class="product-price">
+            ₹ {{ product.price }}
+        </h2>
+
+        {% if product.stock > 0 %}
+
+            <span class="badge available">
+                In Stock ({{ product.stock }})
+            </span>
+
+        {% else %}
+
+            <span class="badge unavailable">
+                Out of Stock
+            </span>
+
+        {% endif %}
+
+        <br><br>
+
+        <a href="/add-to-cart/{{ product.id }}"
+           class="btn">
+            🛒 Add to Cart
+        </a>
+
+        <a href="/"
+           class="btn secondary-btn">
+            ← Continue Shopping
+        </a>
+
+    </div>
 
 </div>
 

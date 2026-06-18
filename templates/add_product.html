@@ -2,48 +2,115 @@
 
 {% block content %}
 
-<h2>Add Product</h2>
+<div class="form-page">
 
-<form method="POST">
+    <div class="product-form-card">
 
-    <input type="text"
-           name="name"
-           placeholder="Product Name"
-           required>
+        <h1>
+            ➕ Add New Product
+        </h1>
 
-    <br><br>
+        <p class="form-subtitle">
+            Create and publish a new product
+        </p>
 
-    <input type="text"
-           name="description"
-           placeholder="Description"
-           required>
+        <form method="POST">
 
-    <br><br>
+            <div class="form-group">
 
-    <input type="number"
-           name="price"
-           placeholder="Price"
-           required>
+                <label>
+                    Product Name
+                </label>
 
-    <br><br>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter product name"
+                    required
+                >
 
-    <input type="number"
-           name="stock"
-           placeholder="Stock"
-           required>
+            </div>
 
-    <br><br>
+            <div class="form-group">
 
-    <input type="text"
-           name="image"
-           placeholder="Image URL">
+                <label>
+                    Description
+                </label>
 
-    <br><br>
+                <textarea
+                    name="description"
+                    rows="4"
+                    placeholder="Enter product description"
+                    required
+                ></textarea>
 
-    <button type="submit">
-        Add Product
-    </button>
+            </div>
 
-</form>
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Price (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        name="stock"
+                        placeholder="Stock"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    type="text"
+                    name="image"
+                    placeholder="Paste image URL"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn save-btn">
+
+                Save Product
+
+            </button>
+
+            <a href="/admin"
+               class="btn secondary-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}
